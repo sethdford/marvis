@@ -1,0 +1,7 @@
+Elise Dataset Information
+============================================================
+Total samples: 1195
+Columns: audio, text, speaker_name, utterance_pitch_mean, utterance_pitch_std, snr, c50, speaking_rate, phonemes, stoi, si-sdr, pesq, noise, reverberation, speech_monotony, sdr_noise, pesq_speech_quality
+
+DataFrame Info:
+None

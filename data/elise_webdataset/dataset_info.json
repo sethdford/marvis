@@ -1,0 +1,10 @@
+{
+  "dataset_name": "Elise (Ceylia voice)",
+  "total_samples": 1195,
+  "num_shards": 12,
+  "samples_per_shard": 100,
+  "speaker": "Ceylia",
+  "language": "English",
+  "audio_codec": "mimi (via transformers)",
+  "sample_rate": 24000
+}
