@@ -222,6 +222,11 @@ data/elise_webdataset/*.tar
 # Keep dataset metadata
 !data/elise_webdataset/dataset_info.json
 
+# Keep optimization configs
+!configs/optimization/*.json
+!configs/optimization/*.sh
+!configs/optimization/*.py
+
 # Wandb logs
 wandb/
 

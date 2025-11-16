@@ -1,0 +1,140 @@
+{
+  "total_configs": 18,
+  "configs": [
+    {
+      "id": 1,
+      "path": "configs/optimization/trial_01_lr5e-05_df0.0625_dw0.5.json",
+      "lr": 5e-05,
+      "dec_frac": 0.0625,
+      "dec_weight": 0.5
+    },
+    {
+      "id": 2,
+      "path": "configs/optimization/trial_02_lr5e-05_df0.0625_dw1.0.json",
+      "lr": 5e-05,
+      "dec_frac": 0.0625,
+      "dec_weight": 1.0
+    },
+    {
+      "id": 3,
+      "path": "configs/optimization/trial_03_lr5e-05_df0.0625_dw1.5.json",
+      "lr": 5e-05,
+      "dec_frac": 0.0625,
+      "dec_weight": 1.5
+    },
+    {
+      "id": 4,
+      "path": "configs/optimization/trial_04_lr5e-05_df0.1250_dw0.5.json",
+      "lr": 5e-05,
+      "dec_frac": 0.125,
+      "dec_weight": 0.5
+    },
+    {
+      "id": 5,
+      "path": "configs/optimization/trial_05_lr5e-05_df0.1250_dw1.0.json",
+      "lr": 5e-05,
+      "dec_frac": 0.125,
+      "dec_weight": 1.0
+    },
+    {
+      "id": 6,
+      "path": "configs/optimization/trial_06_lr5e-05_df0.1250_dw1.5.json",
+      "lr": 5e-05,
+      "dec_frac": 0.125,
+      "dec_weight": 1.5
+    },
+    {
+      "id": 7,
+      "path": "configs/optimization/trial_07_lr1e-04_df0.0625_dw0.5.json",
+      "lr": 0.0001,
+      "dec_frac": 0.0625,
+      "dec_weight": 0.5
+    },
+    {
+      "id": 8,
+      "path": "configs/optimization/trial_08_lr1e-04_df0.0625_dw1.0.json",
+      "lr": 0.0001,
+      "dec_frac": 0.0625,
+      "dec_weight": 1.0
+    },
+    {
+      "id": 9,
+      "path": "configs/optimization/trial_09_lr1e-04_df0.0625_dw1.5.json",
+      "lr": 0.0001,
+      "dec_frac": 0.0625,
+      "dec_weight": 1.5
+    },
+    {
+      "id": 10,
+      "path": "configs/optimization/trial_10_lr1e-04_df0.1250_dw0.5.json",
+      "lr": 0.0001,
+      "dec_frac": 0.125,
+      "dec_weight": 0.5
+    },
+    {
+      "id": 11,
+      "path": "configs/optimization/trial_11_lr1e-04_df0.1250_dw1.0.json",
+      "lr": 0.0001,
+      "dec_frac": 0.125,
+      "dec_weight": 1.0
+    },
+    {
+      "id": 12,
+      "path": "configs/optimization/trial_12_lr1e-04_df0.1250_dw1.5.json",
+      "lr": 0.0001,
+      "dec_frac": 0.125,
+      "dec_weight": 1.5
+    },
+    {
+      "id": 13,
+      "path": "configs/optimization/trial_13_lr2e-04_df0.0625_dw0.5.json",
+      "lr": 0.0002,
+      "dec_frac": 0.0625,
+      "dec_weight": 0.5
+    },
+    {
+      "id": 14,
+      "path": "configs/optimization/trial_14_lr2e-04_df0.0625_dw1.0.json",
+      "lr": 0.0002,
+      "dec_frac": 0.0625,
+      "dec_weight": 1.0
+    },
+    {
+      "id": 15,
+      "path": "configs/optimization/trial_15_lr2e-04_df0.0625_dw1.5.json",
+      "lr": 0.0002,
+      "dec_frac": 0.0625,
+      "dec_weight": 1.5
+    },
+    {
+      "id": 16,
+      "path": "configs/optimization/trial_16_lr2e-04_df0.1250_dw0.5.json",
+      "lr": 0.0002,
+      "dec_frac": 0.125,
+      "dec_weight": 0.5
+    },
+    {
+      "id": 17,
+      "path": "configs/optimization/trial_17_lr2e-04_df0.1250_dw1.0.json",
+      "lr": 0.0002,
+      "dec_frac": 0.125,
+      "dec_weight": 1.0
+    },
+    {
+      "id": 18,
+      "path": "configs/optimization/trial_18_lr2e-04_df0.1250_dw1.5.json",
+      "lr": 0.0002,
+      "dec_frac": 0.125,
+      "dec_weight": 1.5
+    }
+  ],
+  "instructions": {
+    "step1": "Upload marvis-tts to RunPod",
+    "step2": "For each config, run training for 2000 steps:",
+    "command": "accelerate launch train.py configs/optimization/trial_XX_*.json",
+    "step3": "Monitor loss in wandb",
+    "step4": "Choose config with lowest loss after 2000 steps",
+    "estimated_time": "18 configs \u00d7 10 min = 180 minutes",
+    "estimated_cost": "18 configs \u00d7 $0.073 = $1.31 (RTX 4090)"
+  }
+}
