@@ -2,7 +2,7 @@
   "backbone_flavor": "llama-250M",
   "decoder_flavor": "llama-60M",
   "tokenizer": "smollm2",
-  "dataset_repo_id": "data/elise_webdataset",
+  "dataset_repo_id": "/workspace/marvis/data/elise_webdataset",
   "audio_num_codebooks": 32,
   "learning_rate": 1e-4,
   "max_tokens": 5000,
@@ -15,6 +15,10 @@
   "resume_from_checkpoint": null,
   "finetune": true,
 
-  "_comment": "Local Config - Use elise_finetune_runpod.json on RunPod",
-  "_note": "Change device to 'mps' for Apple Silicon or 'cpu' if no GPU"
+  "_comment": "RunPod Config",
+  "_optimizations": [
+    "device: cuda (for NVIDIA GPUs)",
+    "precision: fp16 (2x faster on GPU)",
+    "dataset_repo_id: /workspace/marvis path"
+  ]
 }
