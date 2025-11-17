@@ -17,6 +17,7 @@ torchcodec>=0.1.0
 
 # Training utilities
 wandb
+torchao  # Required by torchtune
 torchtune
 tqdm>=4.65.0
 
