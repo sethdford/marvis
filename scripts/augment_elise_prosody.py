@@ -32,10 +32,8 @@ import soundfile as sf
 from datasets import load_dataset
 from transformers import MimiModel, AutoFeatureExtractor
 
-# Import prosody controller from FERN
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "voice"))
-from fern.tts.prosody_control import create_prosody_controller
-
+# Import prosody controller (now included in Marvis!)
+from marvis_tts.prosody_control import create_prosody_controller
 from marvis_tts.utils import load_smollm2_tokenizer
 
 print("=" * 70)
