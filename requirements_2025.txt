@@ -1,0 +1,17 @@
+# Additional requirements for 2025 features
+# Install after base requirements.txt
+
+# Flash Attention for 2-4x training speedup
+# Requires CUDA and specific torch version compatibility
+flash-attn>=2.3.0
+
+# Quantization for faster inference (INT8/INT4)
+bitsandbytes>=0.41.0
+
+# Optional: Better sentiment analysis for prosody
+# (Only needed if using RoBERTa sentiment model)
+# sentencepiece is already in base requirements.txt
+
+# Development/Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
