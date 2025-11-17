@@ -81,7 +81,12 @@ def train(config: TrainingConfig):
         return Model(model_args).to(device=device, dtype=dtype)
 
     device = config.device
-    dtype = torch.bfloat16 if config.precision == "bf16" else torch.float32
+    if config.precision == "bf16":
+        dtype = torch.bfloat16
+    elif config.precision == "fp16":
+        dtype = torch.float16
+    else:
+        dtype = torch.float32
     model = create_model(device=device, dtype=dtype)
 
     if config.freeze_backbone:
@@ -158,6 +163,11 @@ def train(config: TrainingConfig):
     except ImportError:
         pass
 
+    # Determine mixed precision setting for accelerate
+    mixed_precision = "no"
+    if config.precision in ["bf16", "fp16"]:
+        mixed_precision = config.precision
+
     trainer = Trainer(
         model=model,
         optimizer=optimizer,
@@ -166,7 +176,7 @@ def train(config: TrainingConfig):
         decoder_fraction=config.decoder_fraction,
         accelerate_kwargs={
             "log_with": "wandb" if use_wandb else None,
-            "mixed_precision": "bf16" if config.precision == "bf16" else "no",
+            "mixed_precision": mixed_precision,
         },
     )
     trainer.train(total_steps=2_000_000, start_step=start_step, scheduler_state=scheduler_state)

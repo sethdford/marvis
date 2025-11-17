@@ -195,8 +195,16 @@ class Trainer:
                 disable=not self.accelerator.is_local_main_process,
             )
 
+            # Use the precision from accelerator config
             device_type = "cuda" if torch.cuda.is_available() else "cpu"
-            dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+            # Accelerator handles mixed precision, but we need dtype for autocast
+            if self.accelerator.mixed_precision == "bf16":
+                dtype = torch.bfloat16
+            elif self.accelerator.mixed_precision == "fp16":
+                dtype = torch.float16
+            else:
+                # Auto-detect if no mixed precision specified
+                dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
 
             for batch_idx, batch in enumerate(progress_bar):
                 if global_step >= total_steps:
@@ -283,7 +291,14 @@ class Trainer:
         running_loss = 0.0
 
         device_type = "cuda" if torch.cuda.is_available() else "cpu"
-        dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+        # Use the precision from accelerator config
+        if self.accelerator.mixed_precision == "bf16":
+            dtype = torch.bfloat16
+        elif self.accelerator.mixed_precision == "fp16":
+            dtype = torch.float16
+        else:
+            # Auto-detect if no mixed precision specified
+            dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
 
         try:
             for batch in self.val_loader:
