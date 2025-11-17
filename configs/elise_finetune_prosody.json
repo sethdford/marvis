@@ -2,7 +2,7 @@
   "backbone_flavor": "llama-250M",
   "decoder_flavor": "llama-60M",
   "tokenizer": "smollm2",
-  "dataset_repo_id": "/Users/sethford/Downloads/marvis-tts-main/data/elise_prosody_webdataset",
+  "dataset_repo_id": "data/elise_prosody_webdataset",
   "audio_num_codebooks": 32,
   "learning_rate": 1e-4,
   "max_tokens": 5000,
@@ -13,15 +13,5 @@
   "decoder_fraction": 0.0625,
   "freeze_backbone": false,
   "resume_from_checkpoint": null,
-  "finetune": true,
-
-  "_comment": "PROSODY TRAINING CONFIG",
-  "_description": "Training config for Elise with prosody markers (emotion, emphasis, pauses)",
-  "_features": [
-    "Emotion codes: [HAPPY], [SAD], [EXCITED], [ANGRY], [SURPRISED], [CALM], [NEUTRAL]",
-    "Emphasis markers: [EMPHASIS]word[/EMPHASIS]",
-    "Pause markers: [PAUSE:XXXms]",
-    "Expected naturalness gain: +29%"
-  ],
-  "_usage": "accelerate launch train.py configs/elise_finetune_prosody.json"
+  "finetune": true
 }

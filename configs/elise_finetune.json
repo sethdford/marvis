@@ -13,8 +13,5 @@
   "decoder_fraction": 0.0625,
   "freeze_backbone": false,
   "resume_from_checkpoint": null,
-  "finetune": true,
-
-  "_comment": "Local Config - Use elise_finetune_runpod.json on RunPod",
-  "_note": "Change device to 'mps' for Apple Silicon or 'cpu' if no GPU"
+  "finetune": true
 }

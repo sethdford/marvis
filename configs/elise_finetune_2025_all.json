@@ -2,7 +2,7 @@
   "backbone_flavor": "llama-250M",
   "decoder_flavor": "llama-60M",
   "tokenizer": "smollm2",
-  "dataset_repo_id": "/Users/sethford/Downloads/marvis-tts-main/data/elise_prosody_webdataset",
+  "dataset_repo_id": "data/elise_prosody_webdataset",
   "audio_num_codebooks": 32,
   "learning_rate": 1e-4,
   "max_tokens": 5000,
@@ -13,39 +13,5 @@
   "decoder_fraction": 0.0625,
   "freeze_backbone": false,
   "resume_from_checkpoint": null,
-  "finetune": true,
-
-  "_comment": "2025 ALL FEATURES CONFIG",
-  "_description": "Training with ALL 2025 improvements enabled",
-
-  "_features_enabled": {
-    "prosody_control": true,
-    "flash_attention": true,
-    "gradient_checkpointing": true,
-    "compile_model": true
-  },
-
-  "_2025_improvements": [
-    "✅ Prosody markers (emotion, emphasis, pauses)",
-    "✅ Flash Attention (2-4x faster training)",
-    "✅ Gradient checkpointing (less VRAM)",
-    "✅ torch.compile (20-30% speedup)",
-    "✅ Larger batch size (32 vs 16)",
-    "✅ FP16 precision (2x faster)"
-  ],
-
-  "_expected_performance": {
-    "training_speed": "2-4x faster than baseline",
-    "vram_usage": "50-80% reduction",
-    "speech_naturalness": "+29% improvement",
-    "batch_size": "2x larger (16 → 32)"
-  },
-
-  "_usage": "accelerate launch train.py configs/elise_finetune_2025_all.json",
-
-  "_requirements": [
-    "pip install flash-attn>=2.3.0 --no-build-isolation",
-    "CUDA GPU (Flash Attention requires CUDA)",
-    "Run scripts/augment_elise_prosody.py first"
-  ]
+  "finetune": true
 }

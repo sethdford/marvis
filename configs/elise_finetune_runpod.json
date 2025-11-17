@@ -13,12 +13,5 @@
   "decoder_fraction": 0.0625,
   "freeze_backbone": false,
   "resume_from_checkpoint": null,
-  "finetune": true,
-
-  "_comment": "RunPod Config",
-  "_optimizations": [
-    "device: cuda (for NVIDIA GPUs)",
-    "precision: fp16 (2x faster on GPU)",
-    "dataset_repo_id: /workspace/marvis path"
-  ]
+  "finetune": true
 }
