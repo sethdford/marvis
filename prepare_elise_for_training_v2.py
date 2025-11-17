@@ -54,12 +54,11 @@ print("\n[2/5] Loading text tokenizer...")
 text_tokenizer = load_smollm2_tokenizer()
 print(f"✓ Text tokenizer loaded (vocab size: {text_tokenizer.vocab_size})")
 
-# Step 3: Load Elise dataset from local parquet
-print("\n[3/5] Loading Elise dataset from local parquet...")
-import pandas as pd
-import io
-df = pd.read_parquet("data/elise/dataset.parquet")
-print(f"✓ Dataset loaded with {len(df)} samples")
+# Step 3: Load Elise dataset from HuggingFace
+print("\n[3/5] Loading Elise dataset from HuggingFace...")
+print("  This may take a few minutes on first download...")
+dataset = load_dataset("Jinsaryko/Elise", split="train")
+print(f"✓ Dataset loaded with {len(dataset)} samples")
 
 # Step 4: Process and tokenize audio
 print("\n[4/5] Processing audio and creating WebDataset shards...")
@@ -163,8 +162,8 @@ def write_shard(shard_data, shard_idx):
     print(f"  ✓ Wrote shard {shard_idx}: {shard_path} ({len(shard_data)} samples)")
 
 # Process all samples
-for idx in tqdm(range(len(df)), desc="Processing samples"):
-    sample = df.iloc[idx].to_dict()
+for idx in tqdm(range(len(dataset)), desc="Processing samples"):
+    sample = dataset[idx]
 
     sample_key, sample_json = process_sample(idx, sample)
 
