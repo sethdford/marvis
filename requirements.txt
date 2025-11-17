@@ -1,11 +1,26 @@
-accelerate
-datasets
-huggingface-hub
-soundfile
-sounddevice
-torch
+# Core ML frameworks
+torch>=2.0.0
 torchaudio
-torchtune
-transformers
-wandb
+transformers>=4.35.0
+accelerate>=0.25.0
+
+# Dataset handling
+datasets>=2.15.0
+huggingface-hub>=0.19.0
 webdataset
+
+# Audio processing
+soundfile>=0.12.1
+sounddevice
+librosa>=0.10.0
+torchcodec>=0.1.0
+
+# Training utilities
+wandb
+torchtune
+tqdm>=4.65.0
+
+# Additional utilities
+numpy
+scipy
+sentencepiece  # For SmolLM2 tokenizer
