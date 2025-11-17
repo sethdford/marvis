@@ -72,10 +72,26 @@ skipped_count = 0
 def process_sample(idx, sample):
     """Process a single sample: tokenize audio and prepare data."""
     try:
-        # Get audio data from parquet format
+        # Get audio data - can be AudioDecoder, dict, or other formats
         audio_data = sample['audio']
-        # Audio in parquet is stored as dict with 'bytes' and 'path'
-        if isinstance(audio_data, dict):
+
+        # Handle torchcodec AudioDecoder (datasets >= 2.20.0)
+        if hasattr(audio_data, '__class__') and 'AudioDecoder' in audio_data.__class__.__name__:
+            # AudioDecoder from torchcodec - decode it
+            # Access the underlying data through the decoder's attributes
+            if hasattr(audio_data, 'array') and hasattr(audio_data, 'sampling_rate'):
+                audio_array = np.array(audio_data.array, dtype=np.float32)
+                sample_rate = audio_data.sampling_rate
+            else:
+                # Try to call as a dict-like object
+                try:
+                    audio_array = np.array(audio_data['array'], dtype=np.float32)
+                    sample_rate = audio_data['sampling_rate']
+                except:
+                    print(f"\n  ✗ Cannot extract audio from AudioDecoder for sample {idx}")
+                    return None, None
+        # Handle dict format (older datasets versions)
+        elif isinstance(audio_data, dict):
             if 'bytes' in audio_data and audio_data['bytes'] is not None:
                 # Decode audio from bytes
                 audio_bytes = audio_data['bytes']
