@@ -8,7 +8,7 @@
   "max_tokens": 5000,
   "max_batch_size": 16,
   "device": "cuda",
-  "precision": "fp16",
+  "precision": "bf16",
   "pad_multiple": 64,
   "decoder_fraction": 0.0625,
   "freeze_backbone": false,
