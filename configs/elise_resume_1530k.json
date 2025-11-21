@@ -1,0 +1,17 @@
+{
+  "backbone_flavor": "llama-250M",
+  "decoder_flavor": "llama-60M",
+  "tokenizer": "smollm2",
+  "dataset_repo_id": "/workspace/marvis/data/elise_webdataset",
+  "audio_num_codebooks": 32,
+  "learning_rate": 1e-4,
+  "max_tokens": 5000,
+  "max_batch_size": 16,
+  "device": "cuda",
+  "precision": "bf16",
+  "pad_multiple": 64,
+  "decoder_fraction": 0.0625,
+  "freeze_backbone": false,
+  "resume_from_checkpoint": "/workspace/marvis/checkpoints/model_1530000.pt",
+  "finetune": false
+}
