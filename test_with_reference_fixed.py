@@ -36,22 +36,22 @@ def get_reference_from_dataset(generator, device):
     dataset = wds.WebDataset(str(shards[0]))
     sample = next(iter(dataset))
 
-    # Parse JSON to get audio and text
+    # Parse JSON to get audio tokens and text
     sample_data = json.loads(sample['json'])
-    audio_array = sample_data['audio']
+    audio_tokens = sample_data['audio_tokens']  # Already encoded by Mimi
     text = sample_data['text']
+    speaker = sample_data['speaker']
 
-    # Encode audio with Mimi
-    audio_tensor = torch.tensor(audio_array, dtype=torch.float32, device=device).unsqueeze(0).unsqueeze(0)
-    audio_tokens = generator._audio_tokenizer.encode(audio_tensor)[-1, :, :]
+    # Convert audio tokens to tensor (already encoded, no need to re-encode)
+    audio_tokens_tensor = torch.tensor(audio_tokens, dtype=torch.long, device=device)
 
     # Tokenize text
-    text_tokens = generator._text_tokenizer.encode(f"[0]{text}")
+    text_tokens = generator._text_tokenizer.encode(f"[{speaker}]{text}")
 
     return Segment(
         text=torch.tensor(text_tokens, dtype=torch.long, device=device),
-        audio=torch.tensor(audio_tokens, dtype=torch.long, device=device)[:32, :],
-        speaker=0,
+        audio=audio_tokens_tensor[:32, :],  # Use first 32 codebooks
+        speaker=speaker,
     ), text
 
 
